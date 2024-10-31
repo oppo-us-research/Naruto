@@ -100,8 +100,8 @@ class RRTNaruto(RRT):
             nodes_tensor (torch.Tensor, [N, 3]): RRT nodes as torch.Tensor
         """
         num_collision_free_step, _ = is_collision_free(
-                            self.goal._xyz_arr, 
                             self.nodes[-1]._xyz_arr,
+                            self.goal._xyz_arr, 
                             self.sdf_map,
                             self.step_size,
                             )
