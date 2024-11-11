@@ -39,7 +39,7 @@ class PoseLoader():
     
         Attributes:
             predefined_traj (List): each element is a pose
-                - pose (torch.Tensor, [4,4]): pre-defined trajectory pose. Format: camera-to-world, RDF
+                - pose (torch.Tensor, [4,4]): pre-defined trajectory pose. Format: camera-to-world, RUB
             
         """
         self.main_cfg = main_cfg
@@ -52,7 +52,7 @@ class PoseLoader():
         """ load predefined trajectory poses
     
         Returns:
-            poses (List): each element is a (torch.Tensor, [4,4]). Format: camera-to-world, RDF        
+            poses (List): each element is a (torch.Tensor, [4,4]). Format: camera-to-world, RUB        
         """
         ##################################################
         ### Replica data
@@ -79,10 +79,10 @@ class PoseLoader():
         """ load Replica pose from trajectory file
     
         Args:
-            line (str): pose data as txt line. Format: camera-to-world, RUB
+            line (str): pose data as txt line. Format: camera-to-world, RDF
     
         Returns:
-            c2w (torch.Tensor, [4,4]): pose. Format: camera-to-world, RDF
+            c2w (torch.Tensor, [4,4]): pose. Format: camera-to-world, RUB
         """
         c2w = np.array(list(map(float, line.split()))).reshape(4, 4) 
         c2w[:3, 1] *= -1
@@ -94,10 +94,10 @@ class PoseLoader():
         """ load MP3D pose from trajectory file
     
         Args:
-            line (str): pose data as txt line. Format: camera-to-world, RUB
+            line (str): pose data as txt line. Format: camera-to-world, RDF
     
         Returns:
-            c2w (torch.Tensor, [4,4]): pose. Format: camera-to-world, RDF
+            c2w (torch.Tensor, [4,4]): pose. Format: camera-to-world, RUB
         """
         c2w = np.array(list(map(float, line.split()))).reshape(4, 4) 
         c2w = torch.from_numpy(c2w).float()
@@ -146,7 +146,7 @@ class PoseLoader():
         Depending on active/passive mapping
     
         Args:
-            planned_c2w (torch.Tensor, [4,4]): planned camera pose. Format: camera-to-world, RDF
+            planned_c2w (torch.Tensor, [4,4]): planned camera pose. Format: camera-to-world, RUB
     
         Returns:
             torch.Tensor: next pose
