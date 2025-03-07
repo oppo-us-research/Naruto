@@ -8,7 +8,7 @@ conda activate naruto
 
 # ### Setup habitat-sim ###
 cd ${ROOT}/third_parties
-git clone git@github.com:Huangying-Zhan/habitat-sim.git habitat_sim
+git clone https://github.com/Huangying-Zhan/habitat-sim.git habitat_sim
 cd habitat_sim
 pip install -r requirements.txt
 python setup.py install --headless --bullet
